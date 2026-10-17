@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>NewsPulse · Research dashboard</title>
+  <link rel="stylesheet" href="/src/styles.css">
+  <script type="module" src="/src/app.js"></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <aside class="sidebar">
+    <a class="brand" href="#overview"><span class="brand-icon">N</span> NewsPulse<span class="brand-dot">●</span></a>
+    <p class="eyebrow">RESEARCH WORKSPACE</p>
+    <nav aria-label="Main navigation">
+      <a href="#overview" data-view="overview">Overview <span>01</span></a>
+      <a href="#signals" data-view="signals">Signals to watch <span>02</span></a>
+      <a href="#history" data-view="history">Prediction history <span>03</span></a>
+      <a href="#evaluation" data-view="evaluation">Model evaluation <span>04</span></a>
+    </nav>
+    <div class="sidebar-note"><span class="status-dot"></span> Frontend prototype<p>Fictional market · sample data<br>No live feed connected</p></div>
+  </aside>
+  <div class="workspace">
+    <header class="topbar"><span>Workspace / <strong id="breadcrumb">Overview</strong></span><span class="sample-tag">SAMPLE DATA</span></header>
+    <main id="main" tabindex="-1">
+      <div class="page-heading"><div><p class="eyebrow">NEWS + MARKET RESEARCH</p><h1 id="page-title">A clearer view of the next session.</h1><p id="page-subtitle">Explore estimates, inspect the evidence, and measure what holds up.</p></div></div>
+      <section class="demo-controls" aria-label="Prototype controls"><div><strong>Explore the prototype</strong><p>All values and headlines are fictional. Choose a state to check the interface.</p></div><label>Sample scenario<select id="scenario"><option value="ready">Ready · outcomes pending</option><option value="resolved">Resolved outcomes</option><option value="no-news">No eligible news</option><option value="stale">Stale required inputs</option><option value="provider">Provider failure</option><option value="pipeline">Pipeline failure</option><option value="empty">No predictions</option><option value="loading">Loading</option></select></label></section>
+      <div id="announcement" class="sr-only" role="status" aria-live="polite"></div>
+      <div id="content"></div>
+      <footer>Academic research prototype. Estimates are uncertain and are not personalized investment advice.<br>Market, sources, stack and API contract await team agreement.</footer>
+    </main>
+  </div>
+</body>
+</html>
