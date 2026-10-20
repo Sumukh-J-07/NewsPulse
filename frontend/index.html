@@ -2,33 +2,110 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>NewsPulse · Research dashboard</title>
-  <link rel="stylesheet" href="/src/styles.css">
-  <script type="module" src="/src/app.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NewsPulse · Market Research &amp; Forecast Evaluation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./src/styles.css">
+  <script type="module" src="./src/app.js"></script>
 </head>
 <body>
-  <a class="skip" href="#main">Skip to content</a>
-  <aside class="sidebar">
-    <a class="brand" href="#overview"><span class="brand-icon">N</span> NewsPulse<span class="brand-dot">●</span></a>
-    <p class="eyebrow">RESEARCH WORKSPACE</p>
-    <nav aria-label="Main navigation">
-      <a href="#overview" data-view="overview">Overview <span>01</span></a>
-      <a href="#signals" data-view="signals">Signals to watch <span>02</span></a>
-      <a href="#history" data-view="history">Prediction history <span>03</span></a>
-      <a href="#evaluation" data-view="evaluation">Model evaluation <span>04</span></a>
-    </nav>
-    <div class="sidebar-note"><span class="status-dot"></span> Frontend prototype<p>Fictional market · sample data<br>No live feed connected</p></div>
-  </aside>
-  <div class="workspace">
-    <header class="topbar"><span>Workspace / <strong id="breadcrumb">Overview</strong></span><span class="sample-tag">SAMPLE DATA</span></header>
-    <main id="main" tabindex="-1">
-      <div class="page-heading"><div><p class="eyebrow">NEWS + MARKET RESEARCH</p><h1 id="page-title">A clearer view of the next session.</h1><p id="page-subtitle">Explore estimates, inspect the evidence, and measure what holds up.</p></div></div>
-      <section class="demo-controls" aria-label="Prototype controls"><div><strong>Explore the prototype</strong><p>All values and headlines are fictional. Choose a state to check the interface.</p></div><label>Sample scenario<select id="scenario"><option value="ready">Ready · outcomes pending</option><option value="resolved">Resolved outcomes</option><option value="no-news">No eligible news</option><option value="stale">Stale required inputs</option><option value="provider">Provider failure</option><option value="pipeline">Pipeline failure</option><option value="empty">No predictions</option><option value="loading">Loading</option></select></label></section>
-      <div id="announcement" class="sr-only" role="status" aria-live="polite"></div>
-      <div id="content"></div>
-      <footer>Academic research prototype. Estimates are uncertain and are not personalized investment advice.<br>Market, sources, stack and API contract await team agreement.</footer>
-    </main>
-  </div>
+  <a class="skip" href="#main">Skip to main content</a>
+
+  <!-- Top Editorial Application Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand-group">
+        <a class="brand" href="#overview">
+          <span class="brand-name">NewsPulse</span>
+          <span class="brand-tag">RESEARCH</span>
+        </a>
+        <span class="brand-divider">|</span>
+        <span class="brand-subtitle">Market research &amp; forecast evaluation</span>
+      </div>
+
+      <div class="header-controls">
+        <!-- Live vs Sample Operational Mode Selector -->
+        <div class="mode-selector" role="group" aria-label="Operational Data Mode">
+          <button type="button" class="mode-btn active" id="btn-mode-live" data-mode="live">
+            <span class="indicator-dot live"></span> Live Data
+          </button>
+          <button type="button" class="mode-btn" id="btn-mode-sample" data-mode="sample">
+            <span class="indicator-dot sample"></span> Sample Data (Fictional)
+          </button>
+        </div>
+
+        <button type="button" id="btn-refresh" class="btn-refresh" title="Run manual pipeline refresh (protected by operator token)">
+          <span class="refresh-icon">↻</span> Refresh
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Primary Tab Navigation -->
+  <nav class="primary-nav" aria-label="Research sections">
+    <div class="nav-container">
+      <a href="#overview" data-view="overview" class="nav-tab active">Overview</a>
+      <a href="#signals" data-view="signals" class="nav-tab">Signals to Watch</a>
+      <a href="#history" data-view="history" class="nav-tab">Prediction Ledger</a>
+      <a href="#evaluation" data-view="evaluation" class="nav-tab">Model Evaluation</a>
+      
+      <div class="nav-scenario-tool">
+        <label for="scenario" class="scenario-label">Scenario:</label>
+        <select id="scenario" class="scenario-select">
+          <option value="live" selected>Live Mode (FastAPI / NSE)</option>
+          <option value="sample">Sample Mode (Deterministic Fictional)</option>
+          <optgroup label="Offline Test Fixtures">
+            <option value="ready">Fixture: Ready · outcomes pending</option>
+            <option value="resolved">Fixture: Resolved outcomes</option>
+            <option value="no-news">Fixture: No eligible news</option>
+            <option value="stale">Fixture: Stale required inputs</option>
+            <option value="provider">Fixture: Provider failure</option>
+            <option value="pipeline">Fixture: Pipeline failure</option>
+            <option value="empty">Fixture: Empty predictions</option>
+            <option value="loading">Fixture: Loading state</option>
+          </optgroup>
+        </select>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Content Layout -->
+  <main id="main" class="main-container" tabindex="-1">
+    <!-- Status / Mode Banner -->
+    <div id="mode-banner" class="mode-banner" role="status">
+      <div class="banner-content">
+        <span class="banner-badge" id="banner-badge">LIVE DATA</span>
+        <span class="banner-text" id="banner-text">Loading pipeline status…</span>
+      </div>
+      <div class="banner-meta" id="banner-meta">
+        <span id="banner-freshness"></span>
+      </div>
+    </div>
+
+    <!-- Page Heading -->
+    <div class="page-heading">
+      <div class="page-titles">
+        <h1 id="page-title">Next-Session Market Outlook</h1>
+        <p id="page-subtitle" class="page-subtitle">Inspect close-to-close forecast returns, news evidence, and empirical model accuracy.</p>
+      </div>
+      <div class="page-meta" id="page-meta">
+        <span id="breadcrumb" class="sr-only">Overview</span>
+      </div>
+    </div>
+
+    <div id="announcement" class="sr-only" role="status" aria-live="polite"></div>
+
+    <!-- Dynamic Section Content -->
+    <div id="content" class="content-region"></div>
+
+    <footer class="app-footer">
+      <div class="footer-content">
+        <p><strong>Academic Research Prototype</strong> — Forecast changes are informational model estimates and do not constitute financial advice. Implements lookahead-free feature engineering, strict timestamp cutoffs, and chronological holdout evaluation.</p>
+        <p class="footer-sub">NewsPulse · Python FastAPI + Linear Ridge Forecasting Baseline · Market timezone: Asia/Kolkata</p>
+      </div>
+    </footer>
+  </main>
 </body>
 </html>

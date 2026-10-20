@@ -1,0 +1,39 @@
+{
+  "_comment": "Sample-mode watchlist. Every company, ticker, headline and price in sample mode is FICTIONAL and generated deterministically by newspulse.providers.sample_generator. Names follow the original frontend prototype (ALFA, BRIO, CEDR, DUNE, ELIO).",
+  "data_origin": "sample",
+  "market": {
+    "name": "Demo Exchange (fictional)",
+    "exchange": "DEMO",
+    "timezone": "Asia/Kolkata",
+    "session_close_local": "15:30",
+    "cutoff_local": "16:00",
+    "holidays": ["2025-10-02", "2025-10-21", "2025-12-25", "2026-01-26", "2026-03-04", "2026-04-03", "2026-05-01", "2026-10-02"]
+  },
+  "index": {
+    "asset_id": "DM100",
+    "ticker": "DM100",
+    "display_name": "Demo Market 100",
+    "exchange": "DEMO",
+    "aliases": {"strong": ["Demo Market 100", "DM100"], "weak": ["benchmark index", "broader market"]},
+    "conflicts": []
+  },
+  "stocks": [
+    {"asset_id": "ALFA", "ticker": "ALFA", "display_name": "Alfa Systems", "exchange": "DEMO",
+     "aliases": {"strong": ["Alfa Systems"], "weak": ["Alfa"]}, "conflicts": ["Alfa Foods"]},
+    {"asset_id": "BRIO", "ticker": "BRIO", "display_name": "Brio Energy", "exchange": "DEMO",
+     "aliases": {"strong": ["Brio Energy"], "weak": ["Brio"]}, "conflicts": []},
+    {"asset_id": "CEDR", "ticker": "CEDR", "display_name": "Cedar Industries", "exchange": "DEMO",
+     "aliases": {"strong": ["Cedar Industries"], "weak": ["Cedar"]}, "conflicts": ["Cedar Capital"]},
+    {"asset_id": "DUNE", "ticker": "DUNE", "display_name": "Dune Consumer", "exchange": "DEMO",
+     "aliases": {"strong": ["Dune Consumer"], "weak": ["Dune"]}, "conflicts": ["Dune Films"]},
+    {"asset_id": "ELIO", "ticker": "ELIO", "display_name": "Elio Networks", "exchange": "DEMO",
+     "aliases": {"strong": ["Elio Networks"], "weak": ["Elio"]}, "conflicts": []},
+    {"asset_id": "FERN", "ticker": "FERN", "display_name": "Fernwood Pharma", "exchange": "DEMO",
+     "aliases": {"strong": ["Fernwood Pharma"], "weak": ["Fernwood"]}, "conflicts": []},
+    {"asset_id": "GALE", "ticker": "GALE", "display_name": "Gale Logistics", "exchange": "DEMO",
+     "aliases": {"strong": ["Gale Logistics"], "weak": ["Gale"]}, "conflicts": []},
+    {"asset_id": "HALO", "ticker": "HALO", "display_name": "Halo Bank", "exchange": "DEMO",
+     "aliases": {"strong": ["Halo Bank"], "weak": ["Halo"]}, "conflicts": ["Halo Insurance"]}
+  ],
+  "news_feeds": []
+}

@@ -1,0 +1,51 @@
+{
+  "_comment": "Live-mode watchlist (implementation default, see README 'Project decisions'). Holidays must be filled from official NSE circulars; until then the next-session date is a weekday estimate and reconciliation uses the first real session returned by the price provider.",
+  "data_origin": "live",
+  "market": {
+    "name": "National Stock Exchange of India",
+    "exchange": "NSE",
+    "timezone": "Asia/Kolkata",
+    "session_close_local": "15:30",
+    "cutoff_local": "16:00",
+    "holidays": []
+  },
+  "index": {
+    "asset_id": "NIFTY50",
+    "ticker": "^NSEI",
+    "display_name": "NIFTY 50",
+    "exchange": "NSE",
+    "aliases": {"strong": ["Nifty 50", "Nifty50", "NSE Nifty"], "weak": ["Nifty", "Dalal Street", "Indian equities", "Indian shares"]},
+    "conflicts": ["Nifty Bank", "Bank Nifty", "Nifty IT", "Nifty Midcap", "Nifty Smallcap", "GIFT Nifty"]
+  },
+  "stocks": [
+    {"asset_id": "RELIANCE", "ticker": "RELIANCE.NS", "display_name": "Reliance Industries", "exchange": "NSE",
+     "aliases": {"strong": ["Reliance Industries", "RIL"], "weak": ["Reliance"]},
+     "conflicts": ["Reliance Power", "Reliance Infrastructure", "Reliance Capital", "Reliance Communications", "Reliance Home Finance", "Reliance Nippon"]},
+    {"asset_id": "TCS", "ticker": "TCS.NS", "display_name": "Tata Consultancy Services", "exchange": "NSE",
+     "aliases": {"strong": ["Tata Consultancy Services", "Tata Consultancy"], "weak": ["TCS"]},
+     "conflicts": []},
+    {"asset_id": "HDFCBANK", "ticker": "HDFCBANK.NS", "display_name": "HDFC Bank", "exchange": "NSE",
+     "aliases": {"strong": ["HDFC Bank"], "weak": ["HDFC"]},
+     "conflicts": ["HDFC Life", "HDFC AMC", "HDFC Asset Management", "HDFC Securities", "HDFC Ergo", "HDFC Mutual Fund"]},
+    {"asset_id": "INFY", "ticker": "INFY.NS", "display_name": "Infosys", "exchange": "NSE",
+     "aliases": {"strong": ["Infosys"], "weak": ["Infy"]},
+     "conflicts": []},
+    {"asset_id": "ICICIBANK", "ticker": "ICICIBANK.NS", "display_name": "ICICI Bank", "exchange": "NSE",
+     "aliases": {"strong": ["ICICI Bank"], "weak": ["ICICI"]},
+     "conflicts": ["ICICI Prudential", "ICICI Lombard", "ICICI Securities", "ICICI Pru"]},
+    {"asset_id": "HINDUNILVR", "ticker": "HINDUNILVR.NS", "display_name": "Hindustan Unilever", "exchange": "NSE",
+     "aliases": {"strong": ["Hindustan Unilever", "HUL"], "weak": []},
+     "conflicts": []},
+    {"asset_id": "ITC", "ticker": "ITC.NS", "display_name": "ITC", "exchange": "NSE",
+     "aliases": {"strong": ["ITC Ltd", "ITC Limited"], "weak": ["ITC"]},
+     "conflicts": ["ITC Hotels", "ITC Infotech"]},
+    {"asset_id": "BHARTIARTL", "ticker": "BHARTIARTL.NS", "display_name": "Bharti Airtel", "exchange": "NSE",
+     "aliases": {"strong": ["Bharti Airtel"], "weak": ["Airtel", "Bharti"]},
+     "conflicts": ["Bharti Hexacom", "Airtel Africa", "Bharti Infratel"]}
+  ],
+  "news_feeds": [
+    {"name": "Economic Times Stocks", "kind": "market_wide", "url": "https://economictimes.indiatimes.com/markets/stocks/rssfeeds/2146842.cms"},
+    {"name": "LiveMint Markets", "kind": "market_wide", "url": "https://www.livemint.com/rss/markets"},
+    {"name": "Yahoo Finance RSS", "kind": "per_asset", "url_template": "https://feeds.finance.yahoo.com/rss/2.0/headline?s={ticker}&region=IN&lang=en-IN", "tag_with_asset": true}
+  ]
+}
